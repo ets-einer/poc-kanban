@@ -1,5 +1,7 @@
+import { Kanban } from './pages/kanban'
+
 export const App = () => {
   return (
-    <div className="bg-black">oi</div>
+    <Kanban />
   )
 }

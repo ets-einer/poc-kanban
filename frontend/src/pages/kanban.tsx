@@ -1,12 +1,12 @@
-import { NextPage } from "next";
+// import { NextPage } from "next";
 import React, { FormEvent, useState } from "react";
 // import { number } from "zod";
-import { trpc } from "../utils/trpc";
-import { Card } from "./components/Card";
+// import { trpc } from "../utils/trpc";
+import { Card } from "../components/Card";
 
-const KanbanPage: NextPage = () => {
-
+export const Kanban = () => {
   const [cards, setCards] = useState([{}]);
+
   const AddCard = () => {
     console.log("Card Adicionado")
     setCards([
@@ -20,8 +20,8 @@ const KanbanPage: NextPage = () => {
   return (
     <>
       <div className="p-16">
-      <h1 className="text-3xl font-bold">Kanban</h1>
-      <br />
+        <h1 className="text-3xl font-bold">Kanban</h1>
+        <br />
         <div className="bg-gray-200 w-1/4 rounded-lg">
           <div className="px-6 pt-6">
             <h1 className="text-2xl font-bold text-red-500">Pending:</h1>
@@ -42,5 +42,3 @@ const KanbanPage: NextPage = () => {
     </>
   );
 };
-
-export default KanbanPage;
