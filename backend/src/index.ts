@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import { appRouter } from './server'
+import { prisma } from './utils/prisma';
 
 const app = express()
 const PORT = 3000
