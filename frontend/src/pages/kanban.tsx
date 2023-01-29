@@ -1,4 +1,3 @@
-// import { NextPage } from "next";
 import React, { FormEvent, useState } from "react";
 // import { number } from "zod";
 // import { trpc } from "../utils/trpc";
@@ -8,12 +7,9 @@ export const Kanban = () => {
   const [cards, setCards] = useState([{}]);
 
   const AddCard = () => {
-    console.log("Card Adicionado")
     setCards([
       ...cards,
-      {
-        cards
-      }
+      { cards }
     ])
   }
 
@@ -25,7 +21,6 @@ export const Kanban = () => {
         <div className="bg-gray-200 w-1/4 rounded-lg">
           <div className="px-6 pt-6">
             <h1 className="text-2xl font-bold text-red-500">Pending:</h1>
-            {/* {JSON.stringify(response.data, null, 2)} */}
             <div>{cards.map((item, index) => (
               <div key={index}><Card /></div>
             ))}</div>

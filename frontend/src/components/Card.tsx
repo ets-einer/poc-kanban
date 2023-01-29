@@ -1,5 +1,6 @@
 // import { trpc } from "../../utils/trpc";
 import { FormEvent, useState } from "react";
+import ReactMarkdown from 'react-markdown'
 
 export const Card = () => {
     const [title, setTitle] = useState("");
@@ -15,7 +16,11 @@ export const Card = () => {
         <div className="max-w-sm p-6 bg-white border rounded-lg shadow">
             <label htmlFor="title">Name:</label>
             <input type="text" id="title" name="title" className="w-96 h-10 border border-black rounded-sm" />
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+            <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}>
+            </textarea>
+            <ReactMarkdown children={description} className="markdown" />
         </div>
     )
 }
