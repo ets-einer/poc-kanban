@@ -87,14 +87,23 @@ app.get("/", (req, res) => {
 });
 
 //Exibir cards
-app.get("/card", async (req, res) => {
-    const cards = await prisma.card.findMany();
-    return res.json({ message: "Teste", cards})
-})
+// app.get("/card", async (req, res) => {
+//     const cards = await prisma.card.findMany();
+//     return res.json({ message: "Teste", cards})
+// })
 
 app.post("/cards", async (req, res) => {
     //Show req body
     console.log("request: ", req.body);
+    try {
+        const card = createCardSchema.parse(req.body);
+        // const createdCard = await prisma.card.create({
+        //     data: card
+        // })
+        // return res.json({message: "Deu Certo", card: createdCard})
+    } catch (error) {
+        // return res.status(400).json
+    }
 })
 
 app.listen(PORT, () => { console.log(`Server is running in http://localhost:${PORT}`) })
