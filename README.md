@@ -2,6 +2,8 @@
 A Proof of Concept of Kanban feature (planner). Testing the traits that this features must have, seeing if it's possible to do so
 
 # To Do
-- [ ] Criar tabela marcas 1 : N
-- [ ] Fazer o cliente escolher entre essas marcas (sugestão de complete)
-- [ ] Se não tiver a marca (essa marca não existe deseja cria-la)
+- [ ] Create colls
+- [ ] Create cards in these colls
+- [ ] Each col must have a name, colour and id
+- [ ] Each card must have a name, description, member assign and id
+- [ ] Cards must be drag and dropable to change their colls with ease
