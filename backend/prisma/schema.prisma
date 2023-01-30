@@ -10,14 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id @default(cuid())
-  name String @unique
-  Brands Brands[]
+//Add table from cards
+model Card {
+  id          String   @id @default(cuid())
+  taskName    String
+  priority    String
+  validity    DateTime
+  description String
 }
 
-model Brands {
-  id String @id @default(cuid())
-  author User @relation(fields: [authorName], references: [id])
-  authorName String
+//Add table from members
+model Member {
+  id    String @id @default(cuid())
+  name  String
+  email String
+  edv   Int
 }
+
+// model Column {
+//   id String @id @default(cuid())
+// }
