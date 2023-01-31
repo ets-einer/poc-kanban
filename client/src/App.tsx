@@ -1,7 +1,7 @@
-import { Kanban } from './pages/kanban'
-
-export const App = () => {
+function App() {
   return (
-    <Kanban />
+    <div className="App">
+    </div>
   )
 }
+export default App
