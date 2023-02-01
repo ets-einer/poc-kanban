@@ -2,11 +2,11 @@ import { useState } from "react"
 
 interface CardsProps {
     id: string
-    title: string
+    name: string
     description: string
 }
 
-export const Cards = ({ id, title, description }: CardsProps) => {
+export const Cards = ({ id, name, description }: CardsProps) => {
     const [cardValues, setCardValues] = useState({
         cardTitle: "",
         cardDescription: "",

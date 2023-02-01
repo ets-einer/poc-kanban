@@ -13,7 +13,7 @@ datasource db {
 //Add table from cards
 model Card {
   id          String   @id @default(cuid())
-  taskName    String
+  name        String
   priority    String
   validity    DateTime
   description String
