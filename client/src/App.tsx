@@ -1,6 +1,6 @@
 import { useId, useState } from "react"
 import { uniqueId } from "./utils/uniqueId"
-import { Columns } from "./components/columns"
+import { Columns } from "./components/Columns"
 
 export const App = () => {
   const [cols, setCols] = useState([{ id: uniqueId("col-"), title: 'Backlog', colour: "#FAFAFA" }])
