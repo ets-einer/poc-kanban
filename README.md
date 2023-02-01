@@ -3,11 +3,13 @@ A Proof of Concept of Kanban feature (planner). Testing the traits that this fea
 
 # To Do
 ## Client-side
-- [ ] Create cols
-- [ ] Create cards in these cols
-- [ ] Each col must have a name, colour and id
-- [ ] Each card must have a name, description, member assign and id
+- [x] Create cols
+- [x] Create cards in these cols
+- [x] Each col must have a name, colour and id
+- [x] Each card must have a name, description, member assign and id
 - [ ] Cards must had been a function to change between cols
+- [ ] The title and colour of the col must be editable
+- [ ] The attributes of the cards must be editable
 
 ## Server-side
 - [ ] Create new cols in db
