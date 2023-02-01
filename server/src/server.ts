@@ -1,5 +1,5 @@
-import { cardRouter } from '../routers/card';
-import { columnRouter } from '../routers/column';
+import { cardRouter } from '../src/routers/card';
+import { columnRouter } from '../src/routers/column';
 import { router } from '../utils/trpc'
 
 export const appRouter = router({
