@@ -45,7 +45,7 @@ export const columnRouter = router({
             })
         }
     }),
-     updateColumn: publicProcedure.input(columnScheme).mutation(async ({ input }) => {
+    updateColumn: publicProcedure.input(columnScheme).mutation(async ({ input }) => {
         try {
             const updatedColumn = await prisma.column.update({
                 where: {
@@ -81,9 +81,7 @@ export const columnRouter = router({
             })
         }
     }),
-   
 
 
-    })
 
 })
