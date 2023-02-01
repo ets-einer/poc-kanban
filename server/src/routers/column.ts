@@ -45,6 +45,27 @@ export const columnRouter = router({
             })
         }
     }),
+     updateColumn: publicProcedure.input(columnScheme).mutation(async ({ input }) => {
+        try {
+            const updatedColumn = await prisma.column.update({
+                where: {
+                    id: input.columnId
+                },
+                data: {
+                    name: input.name,
+                    color: input.color,
+                }
+            })
+            return { updatedColumn }
+        } catch (error) {
+            throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                cause: error,
+                message: 'Cannot edit column!'
+            })
+        }
+    }),
+
 
     })
 
