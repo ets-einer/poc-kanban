@@ -65,6 +65,23 @@ export const columnRouter = router({
             })
         }
     }),
+    deleteColumn: publicProcedure.input(columnScheme).mutation(async ({ input }) => {
+        try {
+            const deletedColumn = await prisma.column.delete({
+                where: {
+                    id: input.columnId
+                }
+            })
+            return { deletedColumn }
+        } catch (error) {
+            throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                cause: error,
+                message: 'Cannot delete column!'
+            })
+        }
+    }),
+   
 
 
     })
