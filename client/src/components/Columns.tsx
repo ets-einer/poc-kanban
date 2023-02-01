@@ -9,7 +9,7 @@ interface ColumnsProps {
 }
 
 export const Columns = ({ id, title, colour }: ColumnsProps) => {
-    const [cards, setCards] = useState([{ id: uniqueId("card-"), title: "First Card", description: "Here it's description" }])
+    const [cards, setCards] = useState([{ id: uniqueId("card-"), title: "", description: "" }])
     const [colsValues, setColsValues] = useState({
         colTitle: '',
         colColour: ''
@@ -34,16 +34,16 @@ export const Columns = ({ id, title, colour }: ColumnsProps) => {
     }
 
     return (
-        <div className="bg-[#E0E2E5] p-2 w-fit rounded-lg flex flex-col gap-5">
+        <div className="bg-[#E0E2E5] p-2 w-fit h-fit rounded-lg flex flex-col gap-5" id={id} >
             <div className="flex gap-2">
-                <input id={id} name="colTitle" placeholder="Insira o titulo" value={colsValues.colTitle} onChange={(event: React.ChangeEvent<HTMLInputElement>) => changeColValues(event)} className="bg-transparent" />
-                <div className={`bg-[${colour}]`}>COR</div>
+                <input name="colTitle" placeholder="Insira o titulo" value={colsValues.colTitle} onChange={(event: React.ChangeEvent<HTMLInputElement>) => changeColValues(event)} className="bg-transparent" />
+                <input className={`bg-[${colour}] w-4`} />
             </div>
             <div className="flex flex-col gap-4">
                 {cards.map((item, index) => (
                     <Cards id={item.id} title={item.title} description={item.description} />
                 ))}
-                <button onClick={createNewCard} className="bg-[#007BC0] p-2 text-white rounded">Novo card</button>
+                <button onClick={createNewCard} className="bg-[#007BC0] p-2 text-white rounded">+ Nova Tarefa</button>
             </div>
         </div>
     )

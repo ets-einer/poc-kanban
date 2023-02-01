@@ -17,11 +17,11 @@ export const App = () => {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 h-screen">
       {cols.map((item, index) => (
         < Columns key={index} id={item.id} title={item.title} colour={item.colour} />
       ))}
-      <button onClick={createNewCol}>Nova Coluna +</button>
+      <div className="bg-[#E0E2E5] h-fit p-4 rounded-lg w-60"><button className="bg-[#A4ABB3] text-white p-2 rounded w-full" onClick={createNewCol}>+ Nova Lista</button></div>
     </div>
   )
 }
