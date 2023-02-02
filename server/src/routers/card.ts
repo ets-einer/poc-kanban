@@ -47,4 +47,27 @@ export const cardRouter = router({
         });
       }
     }),
+    updateCard: publicProcedure
+    .input(createCardSchema)
+    .mutation(async ({ input }) => {
+      try {
+        const updatedCard = await prisma.card.update({
+          where: {
+            id: input.cardId,
+          },
+          data: {
+            title: input.title,
+            description: input.description,
+            priority: input.priority,
+          },
+        });
+        return { updatedCard };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          cause: error,
+          message: "Cannot update card!",
+        });
+      }
+    }),
 });
