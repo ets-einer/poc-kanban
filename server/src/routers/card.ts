@@ -3,6 +3,10 @@ import { z } from "zod";
 import { TRPCError } from '@trpc/server';
 import { publicProcedure, router } from '../../utils/trpc';
 
+const createCardScheme = z.object({
+    title: z.string()
+})
+
 const createCardSchema = z.object({
     title: z.string(),
     priority: z.string(),
@@ -24,14 +28,12 @@ export const cardRouter = router({
         }
     }),
     createCard: publicProcedure
-        .input(createCardSchema)
+        .input(createCardScheme)
         .mutation(async ({ input }) => {
             try {
                 const createCard = await prisma.card.create({
                     data: {
-                        title: input.title,
-                        priority: input.priority,
-                        description: input.descriptiom
+                        title: input.title
                     }
                 })
                 return { createCard }
