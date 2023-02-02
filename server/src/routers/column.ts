@@ -5,8 +5,8 @@ import { publicProcedure, router } from "../../utils/trpc";
 
 const createColScheme = z.object({
   title: z.string(),
-  color: z.string()
-})
+  color: z.string(),
+});
 
 const columnScheme = z.object({
   title: z.string(),
@@ -20,23 +20,25 @@ const moveCardScheme = z.object({
 });
 
 export const columnRouter = router({
-  addColumn: publicProcedure.input(createColScheme).mutation(async ({ input }) => {
-    try {
-      const column = await prisma.column.create({
-        data: {
-          title: input.title,
-          color: input.color,
-        },
-      });
-      return { column };
-    } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        cause: error,
-        message: "Cannot create column!",
-      });
-    }
-  }),
+  addColumn: publicProcedure
+    .input(createColScheme)
+    .mutation(async ({ input }) => {
+      try {
+        const column = await prisma.column.create({
+          data: {
+            title: input.title,
+            color: input.color,
+          },
+        });
+        return { column };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          cause: error,
+          message: "Cannot create column!",
+        });
+      }
+    }),
   getColumn: publicProcedure.query(async () => {
     try {
       const columns = await prisma.column.findMany();

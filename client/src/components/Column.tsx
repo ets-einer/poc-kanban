@@ -20,7 +20,7 @@ export const Column = ({ id, title, color }: ColumnProps) => {
         title: "",
         description: ""
     })
-    const cards = useQuery(["get-cards"], () => api.card.allCard.query());
+    const cards = useQuery(["get-cards"], () => api.card.getAllCards.query());
     const mutation = useMutation(["add-card"], api.card.createCard.mutate, {
         onSuccess() {
             queryClient.invalidateQueries(['get-cards']);
