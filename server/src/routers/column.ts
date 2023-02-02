@@ -3,13 +3,13 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { publicProcedure, router } from "../../utils/trpc";
 
-const createColumnScheme = z.object({
-  name: z.string(),
+const createColScheme = z.object({
+  title: z.string(),
   color: z.string()
 })
 
 const columnScheme = z.object({
-  name: z.string(),
+  title: z.string(),
   color: z.string(),
   columnId: z.string(),
 });
@@ -20,11 +20,11 @@ const moveCardScheme = z.object({
 });
 
 export const columnRouter = router({
-  addColumn: publicProcedure.input(createColumnScheme).mutation(async ({ input }) => {
+  addColumn: publicProcedure.input(createColScheme).mutation(async ({ input }) => {
     try {
       const column = await prisma.column.create({
         data: {
-          name: input.name,
+          title: input.title,
           color: input.color,
         },
       });
@@ -58,7 +58,7 @@ export const columnRouter = router({
             id: input.columnId,
           },
           data: {
-            name: input.name,
+            title: input.title,
             color: input.color,
           },
         });

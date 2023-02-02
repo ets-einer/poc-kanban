@@ -6,18 +6,14 @@ import {
     useQueryClient,
 } from 'react-query'
 
-interface ColumnsProps {
+interface ColumnProps {
     id: string
-    name: string
+    title: string
     color: string
 }
 
-export const Columns = ({ id, name, color }: ColumnsProps) => {
+export const Columns = ({ id, title, color }: ColumnProps) => {
     const [cards, setCards] = useState([{ name: "", description: "" }])
-    const [colsValues, setColsValues] = useState({
-        colTitle: '',
-        colColour: ''
-    })
 
     function createNewCard() {
         setCards([
@@ -29,18 +25,11 @@ export const Columns = ({ id, name, color }: ColumnsProps) => {
         ])
     }
 
-    function changeColValues(event: React.ChangeEvent<HTMLInputElement>) {
-        setColsValues({
-            ...colsValues,
-            [event.target.name]: event.target.value
-        })
-    }
-
     return (
         <div className="bg-[#E0E2E5] p-2 w-fit h-fit rounded-lg flex flex-col gap-5" id={id} >
             <div className="flex gap-2">
-                <input name="colTitle" placeholder="Insira o titulo" value={colsValues.colTitle} onChange={(event: React.ChangeEvent<HTMLInputElement>) => changeColValues(event)} className="bg-transparent" />
-                <input className={`bg-[${color}] w-4`} />
+                <h1>{title}</h1>
+                <div className={`bg-[${color}] w-4`}>cor</div>
             </div>
             <div className="flex flex-col gap-4">
                 {cards.map((item, index) => (

@@ -10,28 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//Add table from cards
 model Card {
-  id          String   @id @default(cuid())
-  name        String
+  id          String  @id @default(cuid())
+  title       String
   priority    String
-  validity    DateTime
   description String
-  Column      Column?  @relation(fields: [columnId], references: [id])
+  Column      Column? @relation(fields: [columnId], references: [id])
   columnId    String?
 }
 
-//Add table from members
-// model Member {
-//   id    String @id @default(cuid())
-//   name  String
-//   email String
-//   edv   Int
-// }
-
 model Column {
   id       String @id @default(cuid())
-  name     String
+  title    String
   color    String
   listCard Card[]
 }

@@ -4,9 +4,8 @@ import { TRPCError } from '@trpc/server';
 import { publicProcedure, router } from '../../utils/trpc';
 
 const createCardSchema = z.object({
-    taskName: z.string(),
+    title: z.string(),
     priority: z.string(),
-    validity: z.string(),
     descriptiom: z.string()
 })
 
@@ -30,9 +29,8 @@ export const cardRouter = router({
             try {
                 const createCard = await prisma.card.create({
                     data: {
-                        taskName: input.taskName,
+                        title: input.title,
                         priority: input.priority,
-                        validity: input.validity,
                         description: input.descriptiom
                     }
                 })

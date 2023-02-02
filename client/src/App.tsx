@@ -31,15 +31,15 @@ export const App = () => {
     event?.preventDefault();
     mutation.mutate({
       color: inputs.color,
-      name: inputs.title,
+      title: inputs.title,
     });
     setIsVisible(!isVisible);
   };
 
   return (
     <div className="flex gap-4 h-screen bg-black">
-      {cols.data!.columns.map((item, index) => (
-        <Columns {...item} />
+      {cols.data!.columns.map((item: any, index: number) => (
+        <Columns key={index} id={item.id} color={item.color} title={item.title} />
       ))}
       {!isVisible ? (
         <div className="bg-[#E0E2E5] h-fit p-4 rounded-lg w-60">
