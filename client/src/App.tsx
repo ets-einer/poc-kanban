@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { uniqueId } from "./utils/uniqueId";
 import { Columns } from "./components/Columns";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { api } from "./utils/trpc";
@@ -7,16 +6,15 @@ import { api } from "./utils/trpc";
 export const App = () => {
   const queryClient = useQueryClient();
   const cols = useQuery(["get-cols"], () => api.column.getColumn.query());
-  const mutation = useMutation(["add-column"], api.column.addColumn.mutate, {
-    onSuccess() {
-      queryClient.invalidateQueries(['get-cols'])
-    },
-  });
-
   const [isVisible, setIsVisible] = useState(false);
   const [inputs, setInputs] = useState({
     title: "",
-    color: "",
+    color: "#ffffff",
+  });
+  const mutation = useMutation(["add-column"], api.column.addColumn.mutate, {
+    onSuccess() {
+      queryClient.invalidateQueries(['get-cols']);
+    },
   });
 
   if (cols.isLoading) return <div>loading..</div>;
@@ -32,7 +30,6 @@ export const App = () => {
   const saveColData = () => {
     event?.preventDefault();
     mutation.mutate({
-      columnId: uniqueId("col-"),
       color: inputs.color,
       name: inputs.title,
     });
@@ -40,7 +37,7 @@ export const App = () => {
   };
 
   return (
-    <div className="flex gap-4 h-screen">
+    <div className="flex gap-4 h-screen bg-black">
       {cols.data!.columns.map((item, index) => (
         <Columns {...item} />
       ))}
@@ -54,7 +51,7 @@ export const App = () => {
           </button>
         </div>
       ) : (
-        <form>
+        <form onSubmit={saveColData}>
           <input
             name="title"
             placeholder="Inserir titulo"
@@ -63,17 +60,16 @@ export const App = () => {
               setColsData(event)
             }
             className="border"
-          />
+            required />
           <input
-            name="colour"
+            name="color"
             placeholder="Inserir Cor"
             value={inputs.color}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setColsData(event)
             }
-            className="border"
-          />
-          <button onClick={saveColData}>Save</button>
+            className="border" />
+          <button type="submit">Add</button>
         </form>
       )}
     </div>

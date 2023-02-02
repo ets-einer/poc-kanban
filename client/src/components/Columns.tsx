@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { uniqueId } from "../utils/uniqueId"
 import { Cards } from "./Cards"
 import {
     useQuery,
@@ -14,7 +13,7 @@ interface ColumnsProps {
 }
 
 export const Columns = ({ id, name, color }: ColumnsProps) => {
-    const [cards, setCards] = useState([{ id: uniqueId("card-"), name: "", description: "" }])
+    const [cards, setCards] = useState([{ name: "", description: "" }])
     const [colsValues, setColsValues] = useState({
         colTitle: '',
         colColour: ''
@@ -24,7 +23,6 @@ export const Columns = ({ id, name, color }: ColumnsProps) => {
         setCards([
             ...cards,
             {
-                id: uniqueId("card-"),
                 name: "",
                 description: ""
             }
@@ -46,7 +44,7 @@ export const Columns = ({ id, name, color }: ColumnsProps) => {
             </div>
             <div className="flex flex-col gap-4">
                 {cards.map((item, index) => (
-                    <Cards id={item.id} name={item.name} description={item.description} />
+                    <Cards id={"sim"} name={item.name} description={item.description} />
                 ))}
                 <button onClick={createNewCard} className="bg-[#007BC0] p-2 text-white rounded">+ Nova Tarefa</button>
             </div>
