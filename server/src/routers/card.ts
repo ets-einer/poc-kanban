@@ -47,7 +47,7 @@ export const cardRouter = router({
         });
       }
     }),
-    updateCard: publicProcedure
+  updateCard: publicProcedure
     .input(createCardSchema)
     .mutation(async ({ input }) => {
       try {
@@ -67,6 +67,24 @@ export const cardRouter = router({
           code: "INTERNAL_SERVER_ERROR",
           cause: error,
           message: "Cannot update card!",
+        });
+      }
+    }),
+  deleteCard: publicProcedure
+    .input(createCardSchema)
+    .mutation(async ({ input }) => {
+      try {
+        const deletedCard = await prisma.card.delete({
+          where: {
+            id: input.cardId,
+          },
+        });
+        return { deletedCard };
+      } catch (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          cause: error,
+          message: "Cannot delete card!",
         });
       }
     }),
