@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Column } from "./components/Column";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { api } from "./utils/trpc";
+import { HexColorPicker } from "react-colorful";
 
 export const App = () => {
   const queryClient = useQueryClient();
   const cols = useQuery(["get-cols"], () => api.column.getColumn.query());
   const [isVisible, setIsVisible] = useState(false);
-  const [inputs, setInputs] = useState({
-    title: "",
-    color: "#ffffff",
-  });
+  const [title, setTitle] = useState("");
+  const [color, setColor] = useState("#ffffff");
   const mutation = useMutation(["add-column"], api.column.addColumn.mutate, {
     onSuccess() {
       queryClient.invalidateQueries(['get-cols']);
@@ -20,18 +19,11 @@ export const App = () => {
   if (cols.isLoading) return <div>loading..</div>;
   if (cols.error) return <div>Error</div>;
 
-  const setColsData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs({
-      ...inputs,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const saveColData = () => {
     event?.preventDefault();
     mutation.mutate({
-      color: inputs.color,
-      title: inputs.title,
+      color: color,
+      title: title,
     });
     setIsVisible(!isVisible);
   };
@@ -55,21 +47,13 @@ export const App = () => {
           <input
             name="title"
             placeholder="Inserir titulo"
-            value={inputs.title}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setColsData(event)
-            }
+            value={title}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
             className="border"
             required />
-          <input
-            name="color"
-            placeholder="Inserir Cor"
-            value={inputs.color}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setColsData(event)
-            }
-            className="border" />
-          <button type="submit">Add</button>
+          <HexColorPicker color={color} onChange={setColor} />;
+          <p className="text-white">{color}</p>
+          <button type="submit" className="text-white">Create</button>
         </form>
       )}
     </div>

@@ -41,7 +41,7 @@ export const Column = ({ id, title, color }: ColumnProps) => {
         <div id={id} className="bg-[#E0E2E5] p-2 w-fit h-fit rounded-lg flex flex-col gap-5">
             <div className="flex gap-2">
                 <h1>{title}</h1>
-                <div className={`bg-[${color}] w-4`}>{color}</div>
+                <div className={`w-4`} style={{ backgroundColor: color }}></div>
             </div>
             {cards.data?.allCards.map((item: any, index: number) => {
                 <Card id={item.id} description={item.description} title={item.title} />
