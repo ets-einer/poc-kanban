@@ -6,6 +6,11 @@ import {
     useQueryClient,
 } from 'react-query'
 import { api } from "../utils/trpc"
+import MDEditor, {
+    commands,
+    ICommand,
+    EditorContext
+} from "@uiw/react-md-editor";
 
 interface ColumnProps {
     id: string
@@ -16,6 +21,7 @@ interface ColumnProps {
 export const Column = ({ id, title, color }: ColumnProps) => {
     const queryClient = useQueryClient();
     const [isVisible, setIsVisible] = useState(true);
+    const [value, setValue] = useState("**Hello world!!!**");
     const [inputs, setInputs] = useState({
         title: "",
         description: ""
@@ -51,7 +57,12 @@ export const Column = ({ id, title, color }: ColumnProps) => {
                     ?
                     <form>
                         <input name="title" value={inputs.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputsValue(event)} />
-                        <input name="description" value={inputs.description} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputsValue(event)} />
+                        <MDEditor
+                            value={value}
+                            onChange={(val) => {
+                                setValue(val!);
+                            }}
+                        />
                         <button type="submit">Save</button>
                     </form>
                     :
