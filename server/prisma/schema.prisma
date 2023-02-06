@@ -25,3 +25,10 @@ model Column {
   color    String
   listCard Card[]
 }
+
+model Member {
+  id    String @id @default(cuid())
+  name  String
+  email String
+  edv   String
+}
