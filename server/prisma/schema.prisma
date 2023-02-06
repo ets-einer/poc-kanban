@@ -24,7 +24,7 @@ model Member {
   id    String @id @default(cuid())
   name  String
   email String
-  edv   Int
+  edv   String
 }
 
 // model Column {
