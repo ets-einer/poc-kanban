@@ -15,3 +15,5 @@ A Proof of Concept of Kanban feature (planner). Testing the traits that this fea
 - [ ] Create new cols in db
 - [ ] Create new cards in each cols
 - [ ] Change cards between cols
+
+Moving poc to einer
