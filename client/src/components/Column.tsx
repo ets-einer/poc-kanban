@@ -6,11 +6,7 @@ import {
     useQueryClient,
 } from 'react-query'
 import { api } from "../utils/trpc"
-import MDEditor, {
-    commands,
-    ICommand,
-    EditorContext
-} from "@uiw/react-md-editor";
+import MDEditor from "@uiw/react-md-editor";
 
 interface ColumnProps {
     id: string
@@ -44,11 +40,8 @@ export const Column = ({ id, title, color }: ColumnProps) => {
     if (cards.error) return <div>Error</div>;
 
     return (
-        <div id={id} className="bg-[#E0E2E5] p-2 w-fit h-fit rounded-lg flex flex-col gap-5">
-            <div className="flex gap-2">
-                <h1>{title}</h1>
-                <div className={`w-4`} style={{ backgroundColor: color }}></div>
-            </div>
+        <div id={id} className="bg-[#E0E2E5] p-2 w-fit h-fit rounded-lg flex flex-col gap-5" style={{ borderTop: `5px solid ${color}` }}>
+            <h1>{title}</h1>
             {cards.data?.allCards.map((item: any, index: number) => {
                 <Card id={item.id} description={item.description} title={item.title} />
             })}
